@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+	<meta charset="utf-8"/>
+	<title>Blog</title>
+	<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<!-- normalize -->
+	<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body>
+	<header>
+		<h1><a href="index.php"><i class="fas fa-microphone"></i> ENCORE UN BLOG ?! #NONMAISALLO</a></h1>
+		<div>
+			<a href="admin.php"><i class="fas fa-cogs"></i> Administation</a>
+		</div>
+	</header>
+
+	<main>
+		<h2><a href="index.php"><i class="fas fa-pencil-alt"></i> Edit Article</a></h2>
+		<form action="editDB.php?idArticle=<?= $idArticle ?>" method="POST" id="ecrireArticle">
+			<fieldset>
+				<legend>Ecrire un Article</legend>
+				<div>
+					<label for="title">Titre :</label>
+					<input type="text" name="title" id="title" value="<?= $post['title']; ?>">
+				</div>
+				<div>
+					<label for="content">Article :</label>
+					<textarea name="content" id="content" cols="99" rows="10"><?= $post['content']; ?></textarea>
+				</div>
+				<div>
+					<small>Rédiger par <?= $post["firstName"] . " " . $post["lastName"] ?></small>
+				</div>
+				<div>
+					<button type="submit">Ajouter</button>
+					<a href="index.php">Annuler</a>
+				</div>
+			</fieldset>
+		</form>
+	</main>
+</body>
+</html>

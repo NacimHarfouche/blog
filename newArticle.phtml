@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+	<meta charset="utf-8"/>
+	<title>Blog</title>
+	<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<!-- normalize -->
+	<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body>
+	<header>
+		<h1><a href="index.php"><i class="fas fa-microphone"></i> ENCORE UN BLOG ?! #NONMAISALLO</a></h1>
+		<div>
+			<a href="admin.php"><i class="fas fa-cogs"></i> Administation</a>
+		</div>
+	</header>
+
+	<main>
+		<!-- partie article  -->
+		<?php if ($section == "article"): ?>
+		<h2><a href="index.php"><i class="fas fa-cogs"></i> Add Article</a></h2>
+		<form action="addDB.php?section=<?= $section ?>" method="POST" class="ecrire">
+			<fieldset>
+				<legend>Ecrire un Article</legend>
+				<div>
+					<label for="title">Titre :</label>
+					<input type="text" name="title" id="title">
+				</div>
+				<div>
+					<label for="content">Article :</label>
+					<textarea name="content" id="content" cols="99" rows="10"></textarea>
+				</div>
+				<div>
+					<label for="author">Auteur :</label>
+					<select name="author" id="author">
+						<?php foreach ($authors as $author): ?> 
+							<option value="<?= $author["id"] ?>"><?= $author["firstName"] ?></option>
+						<?php endforeach; ?>
+					</select>
+					<label for="category">Catégories :</label>
+					<select name="category" id="category">
+						<?php foreach ($categorys as $category): ?>
+							<option value="<?= $category["id"] ?>"><?= $category["name"] ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+				<div>
+					<button type="submit">Ajouter</button>
+					<a href="index.php">Annuler</a>
+				</div>
+			</fieldset>
+		</form>
+
+		<!-- Partie auteur -->
+		<?php elseif ($section == "author"): ?>
+		<h2><a href="index.php"><i class="fas fa-cogs"></i> Add Auteur</a></h2>
+		<form action="addDB.php?section=<?= $section ?>" method="POST" class="ecrire">
+			<fieldset>
+				<legend>Rajouter un Auteur</legend>
+				<div>
+					<label for="firstName">Prénom :</label>
+					<input type="text" name="firstName" id="firstName">
+				</div>
+				<div>
+					<label for="lastName">Nom :</label>
+					<input type="text" name="lastName" id="lastName">
+				</div>
+				<div>
+					<button type="submit">Ajouter</button>
+					<a href="index.php">Annuler</a>
+				</div>
+			</fieldset>
+		</form>
+
+		<!-- Partie catégorie -->
+		<?php elseif ($section == "category"): ?>
+		<h2><a href="index.php"><i class="fas fa-cogs"></i> Add Catégorie</a></h2>
+		<form action="addDB.php?section=<?= $section ?>" method="POST" class="ecrire">
+			<fieldset>
+				<legend>Rajouter une catégorie</legend>
+				<div>
+					<label for="name">Catégorie :</label>
+					<input type="text" name="name" id="name">
+				</div>
+				<div>
+					<button type="submit">Ajouter</button>
+					<a href="index.php">Annuler</a>
+				</div>
+			</fieldset>
+		</form>
+		<?php endif; ?>
+	</main>
+</body>
+</html>

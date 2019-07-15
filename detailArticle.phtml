@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8"/>
+	<title>Blog</title>
+	<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<!-- normalize -->
+	<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body>
+	<header>
+		<h1><a href="index.php"><i class="fas fa-microphone"></i> ENCORE UN BLOG ?! #NONMAISALLO</a></h1>
+		<?php if (count($_SESSION) > 0 AND $_SESSION["status"] == 0): ?>		
+		<div>
+			<a href="admin.php"><i class="fas fa-cogs"></i> Administation</a>
+		</div>
+		<?php endif; ?>
+	</header>
+	<main>
+		<h2><a href="index.php"><i class="far fa-file-alt"></i> Article</a></h2>
+		<section>
+			<article>	
+			<h3><?= $author["title"]; ?></h3>
+			<p><?= $author["content"]; ?></p>
+			<p>Rédigé par <?= $author["firstName"] . " " . $author["lastName"] . " le " . $author["creationTimeStamp"]; ?></p>
+			</article>
+			<hr/>
+			<br/>
+			<section>
+				<h2>Commentaire</h2>
+				<?php foreach($comments as $comment): ?>
+					<article>
+						<h3>#<?= $comment["id"] ?></h3>
+						<p><?= $comment["content"] ?></p>
+						<p>Rédigé par <?= $comment["pseudo"] . " " . $comment["creationTimeStamp"]?></p>
+					</article>
+				<?php endforeach; ?>
+			</section>
+			<hr/>
+			<?php// session_start()?>
+			<?php if (count($_SESSION) > 0): ?>
+			<form action="comment.php?idArticle=<?=$author['id']?>" method="POST">
+				<fieldset>
+					<legend><i class="far fa-comment"></i> Nouveau commentaire</legend>
+					<div>
+						<label for="pseudo">Pseudo</label>
+						<input type="text" id="pseudo" name="pseudo" />
+						<label for="commentaire">Commentaire</label>
+						<textarea id="commentaire" name="commentaire" rows="10" cols="46.5" ></textarea>
+					</div>
+					<div>
+						<button type="submit">Ajouter</button>
+						<a href="index.php">Annuler</a>
+					</div>
+				</fieldset>
+			</form>
+			<?php endif; ?>
+		</section>
+	</main>
+</body>
+</html>

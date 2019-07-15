@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+	<meta charset="utf-8"/>
+	<title>Blog</title>
+	<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<!-- normalize -->
+	<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<!-- Jquery -->
+	<script
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<?php session_start(); ?>
+	<!-- <?php var_dump($_SESSION); ?> -->
+	<header>
+		<h1><a href="index.php"><i class="fas fa-microphone"></i> ENCORE UN BLOG ?! #NONMAISALLO</a></h1>
+		<?php if (count($_SESSION) == 0): ?>
+			<a href="#" id="login">Login</a>
+			<form id="formLogin" action="loginUser.php" method="POST">
+				<fieldset>
+					<legend>Login</legend>
+					<input type="text" placeholder="Email" name="email"/>
+					<input type="password" placeholder="Password" name="password"/>
+					<input type="submit" value="Login">
+				</fieldset>
+			</form>
+		
+		<?php else : ?>
+			<h2>TEST</h2>
+			<a href="logout.php" id="logout">Logout</a>
+		<?php endif; ?>
+
+		<?php if (count($_SESSION) > 0 AND $_SESSION["status"] == 0): ?>
+		<div>
+			<a href="admin.php"><i class="fas fa-cogs"></i> Administation</a>
+		</div>
+		<?php endif; ?>
+	</header>
+
+	<main>
+		<h2><a href="index.php"><i class="fas fa-home"></i> Accueil</a></h2>
+		<input type="text" placeholder="search..." name="searchBar" id="searchBar" />
+		<div id="resultSearch"></div>
+		<section>
+			<?php foreach ($authors as $author): ?>
+				<article>
+					<h3 class="h3Home"><a href="detailArticle.php?idArticle=<?=$author["id"]?>"><i class="far fa-hand-point-right"></i> <?= $author["title"]; ?></a></h3>
+					<p><?= substr($author["content"], 0, 11); ?> [...]</p>
+					<p>Rédigé par <?= $author["firstName"] . " " . $author["lastName"] . " le " . $author["creationTimeStamp"] ?></p>
+				</article>
+			<?php endforeach; ?>
+		</section>
+	</main>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

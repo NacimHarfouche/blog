@@ -1,0 +1,103 @@
+/* Font */ 
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
+/* GLOBAL */
+* {
+	box-sizing: border-box;
+	outline: none;
+}
+html {
+	font-size: 62.5%;
+	font-family: "Open Sans";
+}
+
+/* Header */
+header {
+	margin: 0 auto;
+	width: 100%;
+	background-color: #2f2933;
+	border-bottom: solid 5px #01a2a6;
+	padding-top: 30px;
+	color: #01a2a6;
+	text-align: center;
+}
+h1 {
+	margin: 0 auto;
+
+}
+h1 a {
+	text-decoration: none;
+	color: #01a2a6;
+}
+header div {
+	margin-top: 2rem;
+	text-align: right;
+}
+header div a {
+	text-decoration: none;
+	color: #01a2a6;
+}
+header #login, header #logout {
+	text-decoration: none;
+	font-size: 1.3rem;
+	color: #01a2a6;
+}
+
+/* main */
+main {
+	margin: 0 auto;
+	width: 80%;
+}
+nav a {
+	display: block;
+}
+h2 a, .h3Home a {
+	text-decoration: none;
+	color: #01a2a6;
+}
+h2 {
+	color: #01a2a6;
+}
+
+.fa-hand-point-right {
+	color: black;
+}
+form {
+	margin: auto;
+	width: 50%;
+}
+fieldset div {
+	margin: auto;
+	width: 90%;
+}
+
+fieldset div label {
+	margin: auto;
+	display: block;
+}
+fieldset div input {
+	width: 100%;
+	display: block;
+	margin: auto;
+}
+input[type="textarea"] {
+
+}
+
+td a, .new {
+	text-decoration: none;
+	color: #01a2a6;
+}
+form.ecrire {
+	width: 100%;
+}
+#resultSearch {
+	background-color: white;
+	width: 200px;
+}
+#formLogin {
+	display: none;
+}
+
+/* footer */

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+	<meta charset="utf-8"/>
+	<title>Blog</title>
+	<!-- font awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<!-- normalize -->
+	<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+	<!-- style css -->
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+</head>
+
+<body>
+	<header>
+		<h1><a href="index.php"><i class="fas fa-microphone"></i> ENCORE UN BLOG ?! #NONMAISALLO</a></h1>
+		<div>
+			<a href="admin.php"><i class="fas fa-cogs"></i> Administation</a>
+		</div>
+	</header>
+
+	<main>
+		<h2><a href="index.php"><i class="fas fa-cogs"></i> Panneau d'administration</a></h2>
+		<?php if (count($_SESSION) > 0 AND $_SESSION["status"] == 0): ?>
+		<section>
+			<nav>	
+				<a href="newArticle.php?section=article" class="new">Rédiger un nouvelle article</a>
+				<a href="newArticle.php?section=author" class="new">Rajouter un nouvelle auteur</a>
+				<a href="newArticle.php?section=category" class="new">Rajouter une nouvelle catégorie</a>
+			</nav>
+			<table>
+				<caption>Liste des articles</caption>
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Article</th>
+						<th>Auteur</th>
+						<th>Catégorie</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php foreach ($posts as $post): ?>
+					<tr>
+						<td><?= $post["title"] ?></td>
+						<td><?= substr($post["content"], 0, 10) ?></td>
+						<td><?= $post["firstName"] . " " . $post["lastName"] ?></td>
+						<td><?= $post["name"] ?></td>
+						<td><a href="editArticle.php?idArticle=<?= $post["id"] ?>"><i class="fas fa-pencil-alt"></i></a> <a href="deleteArticle.php?idArticle=<?= $post["id"] ?>"><i class="fas fa-times"></i></a></td>
+					</tr>
+				<?php endforeach; ?>
+				</tbody>
+			</table>
+		</section>
+		<?php endif; ?>
+	</main>
+</body>
+</html>
